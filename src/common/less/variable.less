@@ -1,0 +1,77 @@
+@import "../fonts/iconfont.css";
+@r:32rem;            //rem变量
+@bg:#f2f2f2;         //灰色背景
+@bgDark:rgba(0,0,0,0.5); //半透明黑色背景
+@bgRed:#f33a48;       //红色背景
+
+@color-darker:#333;   //黑色文字
+@color-dark:#666;     //浅色文字 （日期，背景灰色）
+@color-darkLess:#d7d7d7;     //搜索等虚色
+@color-white:#fff;    //白色文字
+@color-blue:#0485f3;    //蓝色文字
+@color-red:#e90000;       //红色字体颜色
+@color-red-btn:#f33a48;   //红色按钮颜色
+@color-yellow: #ffaa24;   //黄色
+
+.fszSmer(@x, @y){   // 20px
+  font-size:12/@r;
+  transform: scale(0.78);
+  transform-origin:@x @y;
+}
+.fszSm(@x, @y){       //22px
+  font-size:12/@r;
+  transform: scale(0.78);
+  transform-origin:@x @y;
+}
+.fszSmMd(@x, @y){       //24px
+  font-size:12/@r;
+  transform: scale(0.85);
+  transform-origin:@x @y;
+}
+.fszMd(@x, @y){       //26px
+  font-size:12/@r;
+  transform: scale(0.92);
+  transform-origin:@x @y;
+}
+
+@fsz-mid:12.8/@r;   //30px
+@fsz-lg:13.6/@r;    //32px
+@fsz-lger:15.36/@r; //36px
+@fsz-lgest:37.5/@r;
+
+@borderColor:#ddd;
+@bgWhiteOpc:rgba(255,255,255,0.28);
+
+@left:12/@r;    //左侧边距
+@right:12/@r;   //右侧边距
+@width:320/@r - @left - @right;   //中间宽度
+.withWidth{     //带边距容器
+  padding-left: @left;
+  padding-right:@right;
+  width: @width;
+}
+//清除浮动
+.cl{
+  &:after{
+    display: block;
+    content: '';
+    clear: both;
+    visibility: hidden;
+  }
+}
+//透明度显示过渡
+.showTransition{
+  opacity:0;
+  visibility: hidden;
+  transition: 0.3s ease all;
+  &.active{
+    opacity:1;
+    visibility: visible;
+  }
+}
+
+//高和行高设置
+.hlh(@px){
+  height:@px;
+  line-height:@px;
+}
