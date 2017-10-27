@@ -276,6 +276,13 @@ export const goTo = function (str) {
     window.location.href = str
   }
 }
+export const getLocalHref = function () {
+  let str = window.location.href
+  if (str.indexOf('#') > -1) {
+    str.substring(0, str.indexOf('#'))
+  }
+  return str
+}
 
 /**************************************************************************************************************************
  * dom 操作类

@@ -1,12 +1,13 @@
 import {codeState} from './config'
-
+import {getLocalHref} from '@/common/js/util'
+export const localHref = getLocalHref()
 /***********************************
  * 前端路由
  * @type {string}
  */
-export const login = '/#/login'
-export const report = '/#/report'
-export const page404 = '/#/page404'
+export const login = localHref + '#/login'
+export const report = localHref + '#/report'
+export const page404 = localHref + '#/page404'
 
 /********************************
  * 接口路由
