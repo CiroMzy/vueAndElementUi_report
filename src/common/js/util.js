@@ -276,3 +276,11 @@ export const goTo = function (str) {
     window.location.href = str
   }
 }
+
+/**************************************************************************************************************************
+ * dom 操作类
+ */
+export const getComputedAtt = function (dom, att) {
+  let value = (dom.currentStyle ? dom.currentStyle : getComputedStyle(dom))[att]
+  return value
+}

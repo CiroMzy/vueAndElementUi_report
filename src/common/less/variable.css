@@ -1,4 +1,18 @@
 @import "../fonts/iconfont.css";
+* {
+  margin: 0;
+  padding: 0;
+}
+.mar {
+  width: 80%;
+  margin: 0 auto;
+}
+.fr {
+  float: right;
+}
+.w100 {
+  width: 100%;
+}
 .withWidth {
   padding-left: 0.375rem;
   padding-right: 0.375rem;

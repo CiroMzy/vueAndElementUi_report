@@ -3,13 +3,13 @@
     <div class="icon-container" v-if="showIcon">
       <i class="el-icon-loading"></i>
     </div>
-    <div v-if="showCharts" class="main" id="numberContainer" ></div>
+    <div v-if="showCharts" class="main" id="weightContainer" ></div>
   </div>
 </template>
 
 <script>
   import echarts from 'echarts'
-  import {getStatisticsNumber} from '@/api/report'
+  import {getStatisticsWeight} from '@/api/report'
   import {codeState} from '@/api/config'
   import {getComputedAtt} from '@/common/js/util'
   export default {
@@ -28,7 +28,7 @@
     },
     methods: {
       getStatisticsNumberHandler () {
-        getStatisticsNumber().then((res) => {
+        getStatisticsWeight().then((res) => {
           if (res.data.code !== codeState.ERR_OK) {
             return false
           }
@@ -47,12 +47,12 @@
         this.showIcon = true
       },
       _initOptions () {
-        var dom = document.getElementById('numberContainer')
+        var dom = document.getElementById('weightContainer')
         dom.style.height = getComputedAtt(this.container, 'width')
         var myChart = echarts.init(dom)
         var option = {
           title: {
-            text: '数量（单）',
+            text: '重量（吨）',
             x: 'center'
           },
           color: ['#ffbf00', '#5a99d3', '#ed7d31', '#673AB7'

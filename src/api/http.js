@@ -25,7 +25,7 @@ axios.interceptors.response.use(res => {
     // 转到 登录页面
     case codeState.adminRelogin:
       vm.$message({
-        message: '授权过期，请重新登录',
+        message: '授权未通过，请重新登录',
         type: 'warning',
         showClose: true,
         duration: 3000,
@@ -59,7 +59,7 @@ export function fetch (url, data) {
       }],
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'access-token': getCookie('token') ? getCookie('token') : ''
+        'HTTP_ACCESS_TOKEN': getCookie('token') ? getCookie('token') : ''
       },
       method: 'POST'
     }).then(response => {

@@ -14,7 +14,10 @@ export const page404 = '/#/page404'
  */
 export const rootHref = 'http://mazhaoyang.cn/index.php/Home/Output/'
 export const loginRemote = rootHref + 'reportAdmin.html'
-export const pageLogin = rootHref + 'weixin'
+export const reportReport1 = rootHref + 'reportReport1.html'
+export const reportStasticsNumber = rootHref + 'reportStasticsNumber.html'
+export const reportStasticsWeight = rootHref + 'reportStasticsWeight.html'
+export const reportStatisticNumMonth = rootHref + 'reportStatisticNumMonth.html'
 
 /********************************
  * 路由跳转

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <el-form ref="form"  label-width="80px">
+  <div class="container">
+    <el-form ref="form"  >
       <el-form-item>
         <el-input
           placeholder="请输入用户名"
@@ -12,11 +12,12 @@
         <el-input
           placeholder="请输入密码"
           icon="my-mima"
+          type="password"
           v-model="userPwd">
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">登录</el-button>
+        <el-button type="primary" class="w100" @click="onSubmit">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -67,3 +68,14 @@
 
   }
 </script>
+<style lang="less" scoped>
+  .container{
+    width: 300px;
+    height: 160px;
+    position: absolute;
+    top: 40%;
+    margin-top: -80px;
+    left: 50%;
+    margin-left: -150px;
+  }
+</style>

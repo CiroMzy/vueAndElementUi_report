@@ -3,13 +3,13 @@
     <div class="icon-container" v-if="showIcon">
       <i class="el-icon-loading"></i>
     </div>
-    <div v-if="showCharts" class="main" id="numberContainer" ></div>
+    <div v-if="showCharts" class="main" id="numMonthContainer" ></div>
   </div>
 </template>
 
 <script>
   import echarts from 'echarts'
-  import {getStatisticsNumber} from '@/api/report'
+  import {getStatisticNumMonth} from '@/api/report'
   import {codeState} from '@/api/config'
   import {getComputedAtt} from '@/common/js/util'
   export default {
@@ -28,7 +28,7 @@
     },
     methods: {
       getStatisticsNumberHandler () {
-        getStatisticsNumber().then((res) => {
+        getStatisticNumMonth().then((res) => {
           if (res.data.code !== codeState.ERR_OK) {
             return false
           }
@@ -43,48 +43,69 @@
       },
       _initDom () {
         this.container = this.$refs.container
-        this.container.style.height = this.container.style.width = getComputedAtt(this.container, 'width')
+        this.container.style.width = getComputedAtt(this.container, 'width')
+        this.container.style.height = parseInt(getComputedAtt(this.container, 'width')) / 2 + 'px'
         this.showIcon = true
       },
       _initOptions () {
-        var dom = document.getElementById('numberContainer')
-        dom.style.height = getComputedAtt(this.container, 'width')
+        var dom = document.getElementById('numMonthContainer')
         var myChart = echarts.init(dom)
-        var option = {
-          title: {
-            text: '数量（单）',
-            x: 'center'
-          },
-          color: ['#ffbf00', '#5a99d3', '#ed7d31', '#673AB7'
-          ],
+        let option = {
+          color: ['#5b9bd5', '#ed7d31', '#ffbf00'],
           tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
+            formatter: '{b}:\n{c}'
           },
           legend: {
-            orient: 'horizontal',
+            data: ['下单数量（单）', '完成数量（单）', '下单重量（吨）'],
             x: 'center',
-            y: '50',
-            data: ['上海', '广东', '北京', '天津']
+            y: 'bottom'
+          },
+          toolbox: {
+            show: false
+          },
+          calculable: true,
+          xAxis: [
+            {
+              type: 'category',
+              data: this.dataProp.date
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value'
+            }
+          ],
+          // 网格
+          grid: {
+            x: 40,
+            y: 60,
+            x2: 40,
+            y2: 60,
+            backgroundColor: 'rgba(0,0,0,0)',
+            borderWidth: 1,
+            borderColor: '#ccc'
           },
           series: [
             {
-              name: '访问来源',
-              type: 'pie',
-              radius: '55%',
-              center: ['50%', '55%'],
-              data: this.dataProp,
-              itemStyle: {
-                emphasis: {
-                  shadowBlur: 10,
-                  shadowOffsetX: 0,
-                  shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-              }
+              name: '下单数量（单）',
+              type: 'bar',
+              data: this.dataProp.valNumber
+
+            },
+            {
+              name: '完成数量（单）',
+              type: 'bar',
+              data: this.dataProp.valNumberCk
+
+            },
+            {
+              name: '下单重量（吨）',
+              type: 'bar',
+              data: this.dataProp.valWeight
             }
           ]
         }
-
         if (option && typeof option === 'object') {
           myChart.setOption(option, true)
         }
